@@ -30,7 +30,7 @@ public class LoginFormTest {
             MobileElement passwordInputElem = appiumDriver.findElement(MobileBy.AccessibilityId("input-password"));
             MobileElement loginBtnElem = appiumDriver.findElement(MobileBy.AccessibilityId("button-LOGIN"));
             //interact
-            emailInputElem.sendKeys("teo@sth.com");
+            emailInputElem.sendKeys("lananh@gmail.com");
             passwordInputElem.sendKeys("12345678");
             loginBtnElem.click();
             //check dialog
