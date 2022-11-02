@@ -46,14 +46,17 @@ public class Homework2 {
             //TouchAction
 
             TouchAction touchAction = new TouchAction(appiumDriver);
-            for (int i = 0; i < 5; i++) {
+            /*for (int i = 0; i < 5; i++)*/
+                MobileElement compareText=appiumDriver.findElement(MobileBy.xpath("(//android.view.ViewGroup[@content-desc=\"slideTextContainer\"])"));
+                while (compareText.getText()!= "COMPATIBLE")
+                {
                 touchAction
                         .press(startPoint)
                         .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
                         .moveTo(endPoint)
                         .release()
                         .perform();
-            }
+                }
             // Debug purpose Only
             Thread.sleep(3000);
         }catch (Exception e){
