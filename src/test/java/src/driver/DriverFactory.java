@@ -43,7 +43,7 @@ public class DriverFactory implements MobileCapabilityTypeEx {
                 driver = new IOSDriver<MobileElement>(appiumServer,desiredCapabilities);
                 break;
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Platform type can not be null");
         }
 
         driver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
