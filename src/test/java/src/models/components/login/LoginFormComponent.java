@@ -18,7 +18,7 @@ public class LoginFormComponent {
         return appiumDriver.findElement(emailSel);
     }
 
-    public  MobileElement passwordElem(){
+    public MobileElement passwordElem(){
         return appiumDriver.findElement(passwordSel);
     }
 
@@ -28,5 +28,4 @@ public class LoginFormComponent {
 
     public BottomNavCommponent bottomNavCommponent(){
         return new BottomNavCommponent(appiumDriver);
-    }
-}
+    }}
