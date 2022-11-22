@@ -4,27 +4,19 @@ import io.appium.java_client.MobileElement;
 import org.testng.annotations.Test;
 import src.driver.DriverFactory;
 import src.driver.Platform;
-import src.test_data.model.LoginCred;
+import src.test_data.models.LoginCred;
 import src.test_flows.authentication.LoginFlow;
 
 import java.util.ArrayList;
 import java.util.List;
 public class LoginTest {
     @Test
-    public void TestLogin(){
+    public void testLogin() {
         AppiumDriver<MobileElement> appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
         try {
-            List<LoginCred> loginCredentialData = new ArrayList<>();
-            loginCredentialData.add(new LoginCred("", ""));
-            loginCredentialData.add(new LoginCred("teo@st.com", "1"));
-            loginCredentialData.add(new LoginCred("teo@", "12345678"));
-            loginCredentialData.add(new LoginCred("teo@st.com", "12345678"));
-
-            for (LoginCred loginCredentialDatum : loginCredentialData) {
-                String email = loginCredentialDatum.getEmail();
-                String password = loginCredentialDatum.getPassword();
-                LoginFlow loginFlow = new LoginFlow(appiumDriver, email, password);
-                loginFlow.goToLoginScreen();
+            for (LoginCred loginCred : loginCredDataSets()) {
+                LoginFlow loginFlow = new LoginFlow(appiumDriver, loginCred.getEmail(), loginCred.getPassword());
+                loginFlow. goToLoginScreen();
                 loginFlow.login();
                 loginFlow.verifyLogin();
             }
@@ -33,5 +25,14 @@ public class LoginTest {
         }
 
         appiumDriver.quit();
+    }
+
+    private List<LoginCred> loginCredDataSets() {
+        List<LoginCred> loginCredList = new ArrayList<>();
+        loginCredList.add(new LoginCred("", ""));
+        loginCredList.add(new LoginCred("email@email.com", "123"));
+        loginCredList.add(new LoginCred("email@", "password"));
+        loginCredList.add(new LoginCred("email@email.com", "password"));
+        return loginCredList;
     }
 }
